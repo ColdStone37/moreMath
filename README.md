@@ -24,4 +24,4 @@ A java-class with more math operations
 * **long bk(long n, long k):**
   Berechnet der Binomialkoeffizient $\binom nk$
 * **long fa(short n):**
-  Berechnet die Fakultät von n: n! = 1 * 2 * ... * n
+  Berechnet die Fakultät von $n$: $n! = 1 \cdot 2 \cdot \dots \cdot n$
