@@ -18,7 +18,8 @@ public class moreMath{
 		pf,
 		pf_c,
 		pf_p,
-		bk;
+		bk,
+		fa;
 
 
 		public void run(String[] args){
@@ -40,7 +41,7 @@ public class moreMath{
 				break;
 			case ggT_i:
 				values = extractLongs(args);
-				System.out.println(ggT_invert(values[0], values[1]));
+				System.out.println(ggT_i(values[0], values[1]));
 				break;
 			case kgV:
 				values = extractLongs(args);
@@ -65,6 +66,10 @@ public class moreMath{
 			case bk:
 				values = extractLongs(args);
 				System.out.println(bk(values[0], values[1]));
+				break;
+			case fa:
+				short[] valuesShort = extractShorts(args);
+				System.out.println(fa(valuesShort[0]));
 				break;
 			}
 		}
@@ -93,6 +98,20 @@ public class moreMath{
 	}
 	private static void printIntArray(int[] array){
 		for(int val:array){
+			System.out.print(val+" ");
+		}
+		System.out.println();
+	}
+
+	private static short[] extractShorts(String[] args){
+		short[] returnValue = new short[args.length - 1];
+		for(int i = 0; i<args.length-1; i++){
+			returnValue[i] = Short.parseShort(args[i+1]);
+		}
+		return returnValue;
+	}
+	private static void printShortArray(short[] array){
+		for(short val:array){
 			System.out.print(val+" ");
 		}
 		System.out.println();
@@ -133,6 +152,9 @@ public class moreMath{
 		//bk
 		System.out.println("bk n k");
 		System.out.println(" -Berechnet den Binomialkoeffizient zweier Werte n und k");
+		//fa
+		System.out.println("fa n ");
+		System.out.println(" -Berechnet die Fakultaet n! = 1 * 2 * ... * n");
 	}
 
 	//moderner euklidscher Algorithmus
@@ -215,7 +237,7 @@ public class moreMath{
 		return small;
 	}
 	//inverser euklidscher Algorithmus
-	public static Vector<Long> ggT_invert(long val1, long val2){
+	public static Vector<Long> ggT_i(long val1, long val2){
 		if(val1 == val2){
 			Vector<Long> vec2 = new Vector<Long>(2);
 			vec2.add(0, 0L);
@@ -420,5 +442,13 @@ public class moreMath{
 			bk /= val;
 		}
 		return bk;
+	}
+
+	//Fakultaet
+	public static long fa(short n){
+		long total = 1;
+		for(long i = 2; i <= n; i++)
+			total *= i;
+		return total;
 	}
 }
