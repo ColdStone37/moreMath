@@ -21,7 +21,9 @@ A java-class with more math operations
   Gibt die Primfaktoren in einem Array zurück, in welchem an jeder Stelle die Anzahl der Vorkommen des Faktors in der Zahl steht (Bsp: 6 = [0,0,1,1,0,0,0])
 * **long[] pf_p(long value):**
   Gibt die Primfaktoren auf der Konsole aus
-* **long bk(long n, long k):**
-  Berechnet der Binomialkoeffizient $\binom nk$
+* **long bk(short n, short k):**
+  Berechnet den Binomialkoeffizient $\binom nk$ (Achtung: bei hohen Werte kommt es schnell zu long-Overflows)
+* **BigInteger bk(int n, int k):**
+  Berechnet den Binomialkoeffizient $\binom nk$ als BigInteger
 * **long fa(short n):**
   Berechnet die Fakultät von $n$: $n! = 1 \cdot 2 \cdot \dots \cdot n$

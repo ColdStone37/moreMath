@@ -1,5 +1,6 @@
 import java.util.Vector;
 import java.util.ArrayList;
+import java.math.BigInteger;
 
 public class moreMath{
 	public static void main(String[] args){
@@ -64,8 +65,8 @@ public class moreMath{
 				pf_p(values[0]);
 				break;
 			case bk:
-				values = extractLongs(args);
-				System.out.println(bk(values[0], values[1]));
+				valuesInt = extractInts(args);
+				System.out.println(bk(valuesInt[0], valuesInt[1]));
 				break;
 			case fa:
 				short[] valuesShort = extractShorts(args);
@@ -416,30 +417,39 @@ public class moreMath{
 	}
 
 	//Binomialkoeffizient
-	public static long bk(long n, long k){
+	public static long bk(short n, short k){
 		if(k > n || (k < 0 || n < 0))
 			throw new ArithmeticException();
 
-		ArrayList<Long> divideBy = new ArrayList<Long>();
-		for(long i = 1; i <= (n-k); i++){
-			divideBy.add(i);
-		}
-
 		long bk = 1;
+		long j = 2;
 		for(long i = k + 1; i <= n; i++){
 			bk *= i;
-			for(int j = 0; j < divideBy.size(); j++){
-				long val = divideBy.get(j);
-				if(bk % val == 0){
-					bk /= val;
-					divideBy.remove(j);
-					j--;
-				}
+			while(bk % j == 0 && j <= n-k){
+				bk /= j;
+				j++;
 			}
 		}
 
-		for(long val:divideBy){
-			bk /= val;
+		while(j <= n-k){
+			bk /= j;
+			j++;
+		}
+		return bk;
+	}
+	//Binomialkoeffizient BigInteger
+	public static BigInteger bk(int n, int k){
+		if(k > n || (k < 0 || n < 0))
+			throw new ArithmeticException();
+
+		BigInteger bk = new BigInteger("1");
+		for(int i = k + 1; i <= n; i++){
+			BigInteger I = new BigInteger(i+"");
+			bk = bk.multiply(I);
+		}
+		for(int j = 2; j <= n-k; j++){
+			BigInteger J = new BigInteger(j+"");
+			bk = bk.divide(J);
 		}
 		return bk;
 	}
