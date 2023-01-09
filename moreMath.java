@@ -69,8 +69,8 @@ public class moreMath{
 				System.out.println(bk(valuesInt[0], valuesInt[1]));
 				break;
 			case fa:
-				short[] valuesShort = extractShorts(args);
-				System.out.println(fa(valuesShort[0]));
+				valuesInt = extractInts(args);
+				System.out.println(fa(valuesInt[0]));
 				break;
 			}
 		}
@@ -443,14 +443,16 @@ public class moreMath{
 			throw new ArithmeticException();
 
 		BigInteger bk = new BigInteger("1");
-		for(int i = k + 1; i <= n; i++){
-			BigInteger I = new BigInteger(i+"");
+		BigInteger N = new BigInteger(""+n);
+		BigInteger J = new BigInteger("2");
+		BigInteger N_minus_K = new BigInteger(""+(n-k));
+
+		for(BigInteger I = new BigInteger("" + (k + 1)); I.compareTo(N) <= 0; I = I.add(BigInteger.ONE)){
 			bk = bk.multiply(I);
+			while(J.compareTo(N_minus_K) <= 0 && bk.mod(J).compareTo(BigInteger.ZERO) == 0)
+				bk = bk.divide(J);
 		}
-		for(int j = 2; j <= n-k; j++){
-			BigInteger J = new BigInteger(j+"");
-			bk = bk.divide(J);
-		}
+
 		return bk;
 	}
 
@@ -460,5 +462,14 @@ public class moreMath{
 		for(long i = 2; i <= n; i++)
 			total *= i;
 		return total;
+	}
+
+	//Fakultaet BigInteger
+	public static BigInteger fa(int n){
+		BigInteger Total = new BigInteger("1");
+		BigInteger N = new BigInteger("" + n);
+		for(BigInteger I = new BigInteger("2"); I.compareTo(N) <= 0; I = I.add(BigInteger.ONE))
+			Total = Total.multiply(I);
+		return Total;
 	}
 }
