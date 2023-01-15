@@ -20,7 +20,8 @@ public class moreMath{
 		pf_c,
 		pf_p,
 		bk,
-		fa;
+		fa,
+		phi;
 
 
 		public void run(String[] args){
@@ -71,6 +72,10 @@ public class moreMath{
 			case fa:
 				valuesInt = extractInts(args);
 				System.out.println(fa(valuesInt[0]));
+				break;
+			case phi:
+				valuesInt = extractInts(args);
+				System.out.println(phi(valuesInt[0]));
 				break;
 			}
 		}
@@ -156,6 +161,9 @@ public class moreMath{
 		//fa
 		System.out.println("fa n ");
 		System.out.println(" -Berechnet die Fakultaet n! = 1 * 2 * ... * n");
+		//phi
+		System.out.println("phi n ");
+		System.out.println(" -Berechnet die Eulersche Phi-Funktion für einen gegeben Wert");
 	}
 
 	//moderner euklidscher Algorithmus
@@ -318,9 +326,8 @@ public class moreMath{
 
 		//Produkt aller Werte berechnen
 		long product_m = 1;
-		for(int i = 1; i < values.length; i += 2){
+		for(int i = 1; i < values.length; i += 2)
 			product_m *= values[i];
-		}
 
 		//x-Werte finden, sodass alle einzelnen Module 1 sind
 		long[] x_values = new long[values.length / 2];
@@ -471,5 +478,18 @@ public class moreMath{
 		for(BigInteger I = new BigInteger("2"); I.compareTo(N) <= 0; I = I.add(BigInteger.ONE))
 			Total = Total.multiply(I);
 		return Total;
+	}
+
+	//phi
+	public static long phi(int n){
+		int[] primeFactors = pf_c(n);
+
+		long sum = 1;
+		for(int i=2; i<primeFactors.length; i++){
+			if(primeFactors[i] > 0){
+				sum *= (long)(Math.pow(i, primeFactors[i]) - Math.pow(i, primeFactors[i]-1));
+			}
+		}
+		return sum;
 	}
 }
