@@ -413,7 +413,7 @@ public class moreMath{
 			}
 		}
 		if(!first)
-			System.out.print(" + ");
+			System.out.print(" * ");
 		System.out.println(factor+"^"+count);
 
 		long[] factors = new long[factors_al.size()];
@@ -484,12 +484,12 @@ public class moreMath{
 	public static long phi(int n){
 		int[] primeFactors = pf_c(n);
 
-		long sum = 1;
+		long product = 1;
 		for(int i=2; i<primeFactors.length; i++){
 			if(primeFactors[i] > 0){
-				sum *= (long)(Math.pow(i, primeFactors[i]) - Math.pow(i, primeFactors[i]-1));
+				product *= (long)(Math.pow(i, primeFactors[i]) - Math.pow(i, primeFactors[i]-1));
 			}
 		}
-		return sum;
+		return product;
 	}
 }
