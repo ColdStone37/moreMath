@@ -29,5 +29,5 @@ A java-class with more math operations
   Berechnet die Fakultät von $n$: $n! = 1 \cdot 2 \cdot \dots \cdot n$ (Achtung: bei hohen Werte kommt es schnell zu long-Overflows)
 * **BigInteger fa(int n):**
   Berechnet die Fakultät von $n$: $n! = 1 \cdot 2 \cdot \dots \cdot n$ als BigInteger
-  **long phi(int n):**
+* **long phi(int n):**
   Berechnet die Eulersche Phi-Funktion des Wertes $n$
